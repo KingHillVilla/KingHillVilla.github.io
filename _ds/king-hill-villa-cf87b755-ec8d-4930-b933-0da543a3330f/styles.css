@@ -1,0 +1,164 @@
+/* King Hill Villa DS, tokens inlined (avoids the @import request waterfall). Fonts load via <link> in index.html. */
+/* King Hill Villa: Color tokens
+   The logo is the palette: ocean, sky, sand, palm, ivory, driftwood. */
+
+:root {
+  /* ---- Brand base palette ---- */
+  --kh-ocean-blue: #0B3A63;   /* Primary brand, headlines, nav, buttons */
+  --kh-caribbean-aqua: #1E9CC3; /* Links, hover, accent graphics */
+  --kh-sandstone-gold: #D6A45A; /* EST 2024, decorative, premium accents */
+  --kh-palm-green: #456B3A;   /* Nature imagery, supporting graphics */
+  --kh-ivory-white: #F8F4EC;  /* Backgrounds, sections */
+  --kh-driftwood-tan: #B88A5B; /* Borders, frames, illustrations (sparingly) */
+
+  /* ---- Tints & shades (derived, harmonious) ---- */
+  --kh-ocean-900: #07273f;
+  --kh-ocean-800: #0B3A63;
+  --kh-ocean-700: #114a7c;
+  --kh-ocean-600: #1a5d96;
+  --kh-aqua-600: #167ea0;
+  --kh-aqua-500: #1E9CC3;
+  --kh-aqua-300: #7cc6de;
+  --kh-aqua-100: #d6edf4;
+  --kh-gold-600: #c08c3d;
+  --kh-gold-500: #D6A45A;
+  --kh-gold-200: #ecd4ad;
+  --kh-palm-600: #3a5a31;
+  --kh-palm-500: #456B3A;
+  --kh-sand-100: #fbf9f3;  /* lightest paper */
+  --kh-sand-200: #F8F4EC;  /* ivory */
+  --kh-sand-300: #efe7d6;  /* warm panel */
+  --kh-sand-400: #e3d6bd;  /* hairline on ivory */
+  --kh-driftwood-600: #9c7146;
+  --kh-driftwood-500: #B88A5B;
+
+  /* ---- Neutral ink (warm-cool navy-leaning) ---- */
+  --kh-ink-900: #0a2438;
+  --kh-ink-700: #2c4356;
+  --kh-ink-500: #5a6b78;
+  --kh-ink-300: #97a3ac;
+  --kh-white: #ffffff;
+
+  /* ---- Semantic aliases ---- */
+  --color-bg: var(--kh-ivory-white);
+  --color-bg-warm: var(--kh-sand-300);
+  --color-surface: var(--kh-white);
+  --color-surface-paper: var(--kh-sand-100);
+  --color-ink-on-dark: var(--kh-sand-200);
+
+  --text-heading: var(--kh-ocean-blue);
+  --text-body: var(--kh-ink-700);
+  --text-muted: var(--kh-ink-500);
+  --text-on-dark: var(--kh-sand-200);
+  --text-on-dark-muted: #9fb6c9;
+  --text-link: var(--kh-caribbean-aqua);
+  --text-link-hover: var(--kh-aqua-600);
+  --text-gold: var(--kh-sandstone-gold);
+
+  --accent-primary: var(--kh-ocean-blue);
+  --accent-aqua: var(--kh-caribbean-aqua);
+  --accent-gold: var(--kh-sandstone-gold);
+  --accent-palm: var(--kh-palm-green);
+
+  --border-hairline: var(--kh-sand-400);
+  --border-frame: var(--kh-driftwood-tan);
+  --border-on-dark: rgba(214,164,90,0.45);
+
+  --focus-ring: var(--kh-caribbean-aqua);
+}
+/* King Hill Villa: Typography tokens */
+
+:root {
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Weights */
+  --fw-light: 300; /* @kind font */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+
+  /* Type scale (1.25 major-third-ish, tuned) */
+  --fs-display: 64px;   /* hero headline (Cinzel) */
+  --fs-h1: 44px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 19px;
+  --fs-body-lg: 19px;
+  --fs-body: 17px;
+  --fs-body-sm: 15px;
+  --fs-caption: 13px;
+  --fs-overline: 12px;  /* EST-style small caps labels */
+
+  /* Line heights */
+  --lh-tight: 1.1; /* @kind font */
+  --lh-snug: 1.25; /* @kind font */
+  --lh-body: 1.65; /* @kind font */
+  --lh-relaxed: 1.8; /* @kind font */
+
+  /* Letter spacing, Cinzel & overlines run wide & airy */
+  --ls-display: 0.02em; /* @kind font */
+  --ls-heading: 0.04em; /* @kind font */
+  --ls-overline: 0.28em; /* @kind font */ /* "EST 2024", "AT MUDJIN HARBOR" */
+  --ls-label: 0.12em; /* @kind font */
+  --ls-body: 0; /* @kind font */
+}
+/* King Hill Villa: Spacing & layout tokens (8px base) */
+
+:root {
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 920px;
+  --container-lg: 1200px;
+  --container-xl: 1440px;
+  --section-pad-y: var(--space-9);
+  --section-pad-x: var(--space-7);
+}
+/* King Hill Villa: radii, borders, shadows, motion.
+   Restrained & editorial: soft arches, hairline frames, low diffuse shadows. */
+
+:root {
+  /* Corner radii, gentle, never pill-bubbly. The arch is the signature curve. */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-arch: 50% 50% 6px 6px / 80% 80% 6px 6px; /* the Mudjin arch */
+  --radius-pill: 999px;
+
+  /* Borders */
+  --border-width: 1px;
+  --border-frame-width: 2px;
+
+  /* Shadows, warm, diffuse, low. No harsh greys. */
+  --shadow-xs: 0 1px 2px rgba(11,58,99,0.06);
+  --shadow-sm: 0 2px 8px rgba(11,58,99,0.08);
+  --shadow-md: 0 8px 24px rgba(11,58,99,0.10);
+  --shadow-lg: 0 18px 48px rgba(11,58,99,0.14);
+  --shadow-gold-glow: 0 0 0 3px rgba(214,164,90,0.25);
+
+  /* Motion, calm, the Caribbean slows down. Long eases, no bounce. */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.45, 0, 0.25, 1); /* @kind other */
+  --dur-fast: 160ms; /* @kind other */
+  --dur-base: 260ms; /* @kind other */
+  --dur-slow: 480ms; /* @kind other */
+
+  /* Overlays / protection gradients over imagery */
+  --scrim-ocean: linear-gradient(180deg, rgba(7,39,63,0) 0%, rgba(7,39,63,0.55) 100%); /* @kind other */
+  --scrim-ocean-strong: linear-gradient(180deg, rgba(7,39,63,0.10) 0%, rgba(7,39,63,0.78) 100%); /* @kind other */
+}

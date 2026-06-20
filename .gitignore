@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.b64
+
+# Internal / cross-project / not part of the public villa site
+.claude/
+CLAUDE.md
+InitialPromptData.md
+BrandGuide.PNG
+docs/agents/
+ds-base.js
+support.js
+VillaHomepage.dc.html

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /placeholder.html
+
+Sitemap: https://kinghillvilla.github.io/sitemap.xml

@@ -1,0 +1,12 @@
+{
+  "name": "kinghillvilla-site",
+  "private": true,
+  "description": "Marketing site for King Hill Villa at Mudjin Harbor, Middle Caicos.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-react": "^7"
+  }
+}

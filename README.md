@@ -1,4 +1,4 @@
-# King Hill Villa — website
+# King Hill Villa, website
 
 Marketing/booking site for **King Hill Villa at Mudjin Harbor**, a beachfront
 rental on Middle Caicos, Turks & Caicos.

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>King Hill Villa, Build Dashboard</title>
+<link rel="icon" href="../assets/icon_badge.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap">
+<style>
+  :root{--ocean:#0B3A63;--ocean9:#07273f;--gold:#D6A45A;--aqua:#1E9CC3;--ivory:#F8F4EC;--ink:#2c4356;--muted:#5a6b78;--line:#e3d6bd;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:var(--ink);background:var(--ivory);-webkit-font-smoothing:antialiased}
+  .hero{background:linear-gradient(180deg,var(--ocean),var(--ocean9));color:var(--ivory);padding:48px 24px 40px;text-align:center}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .hero h1{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(28px,5vw,44px);margin:0 0 8px;letter-spacing:.02em}
+  .hero p{color:rgba(248,244,236,.8);margin:6px 0 0;font-size:15px}
+  .wrap{max-width:1000px;margin:0 auto;padding:32px 20px 64px}
+  h2{font-family:'Cinzel',serif;font-weight:600;font-size:22px;color:var(--ocean);letter-spacing:.02em;margin:40px 0 16px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"✦";color:var(--gold);font-size:14px}
+  .grid{display:grid;gap:16px}
+  .cols-4{grid-template-columns:repeat(4,1fr)}
+  .cols-3{grid-template-columns:repeat(3,1fr)}
+  .cols-2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:760px){.cols-4{grid-template-columns:repeat(2,1fr)}.cols-3,.cols-2{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:0 2px 8px rgba(11,58,99,.05)}
+  .stat{font-family:'Cinzel',serif;font-weight:700;font-size:34px;color:var(--ocean);line-height:1}
+  .stat small{font-size:15px;color:var(--muted);font-family:'Source Sans 3';font-weight:400}
+  .label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+  .scores{display:flex;gap:18px;flex-wrap:wrap}
+  .score{flex:1;min-width:120px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  .ring{width:84px;height:84px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-family:'Cinzel',serif;font-weight:700;font-size:26px;color:#fff}
+  .g{background:conic-gradient(#2f9e44 var(--p),#e9ecef 0)}
+  .g span{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--ocean)}
+  .o{background:conic-gradient(#f08c00 var(--p),#e9ecef 0)}
+  .o span{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:#b45309}
+  .platform{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--ocean);margin-bottom:14px;font-size:15px;letter-spacing:.04em;text-transform:uppercase}
+  ul.stack{list-style:none;padding:0;margin:0}
+  ul.stack li{padding:9px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:14.5px}
+  ul.stack li:last-child{border-bottom:0}
+  ul.stack b{color:var(--ocean)}
+  ul.stack span{color:var(--muted);text-align:right}
+  .pill{display:inline-block;background:rgba(30,156,195,.12);color:#167ea0;border-radius:999px;padding:3px 11px;font-size:12px;font-weight:600;margin:2px}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:24px;border-top:1px solid var(--line)}
+  a{color:var(--aqua)}
+  .cat{font-family:'Cinzel',serif;font-weight:700;color:var(--gold);font-size:15px;letter-spacing:.04em;margin-bottom:12px;text-transform:uppercase}
+  ul.todo{list-style:none;padding:0;margin:0}
+  ul.todo li{padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.5}
+  ul.todo li:last-child{border-bottom:0}
+  ul.todo b{color:var(--ocean)}
+  .sub{color:var(--muted);font-size:13.5px}
+  .card.claude{background:linear-gradient(180deg,#ffffff,#fbf6ec);border-color:var(--gold)}
+  .card.claude p{line-height:1.65;font-size:15px;margin:0 0 12px}
+  .card.claude ul{margin:6px 0 14px;padding-left:20px;line-height:1.75;font-size:14.5px;color:var(--ink)}
+  .card.claude ul b{color:var(--ocean)}
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="eyebrow">Internal · Build Dashboard</div>
+    <h1>King Hill Villa</h1>
+    <p>Marketing site, engineering snapshot · 20 June 2026</p>
+  </div>
+  <div class="wrap">
+
+    <h2>Lighthouse scores</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="platform">🖥 Desktop</div>
+        <div class="scores">
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>Performance</div>
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>Accessibility</div>
+          <div class="score"><div class="ring g" style="--p:96%"><span>96</span></div>Best Practices</div>
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>SEO</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="platform">📱 Mobile <span style="font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0">(regular 4G)</span></div>
+        <div class="scores">
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>Performance</div>
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>Accessibility</div>
+          <div class="score"><div class="ring g" style="--p:96%"><span>96</span></div>Best Practices</div>
+          <div class="score"><div class="ring g" style="--p:100%"><span>100</span></div>SEO</div>
+        </div>
+        <p class="sub" style="margin:12px 0 0">100 on regular 4G and wifi. On Lighthouse's worst-case "slow 4G" throttle (1.6 Mbps), performance scores 84.</p>
+      </div>
+    </div>
+
+    <h2>Codebase</h2>
+    <div class="grid cols-4">
+      <div class="card"><div class="stat">1,760</div><div class="label">Lines of source</div></div>
+      <div class="card"><div class="stat">22</div><div class="label">React components</div></div>
+      <div class="card"><div class="stat">253 <small>KB</small></div><div class="label">JS shipped</div></div>
+      <div class="card"><div class="stat">6<small> / 133</small></div><div class="label">Photos in use</div></div>
+    </div>
+
+    <h2>Tech stack</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <ul class="stack">
+          <li><b>UI library</b><span>React 18 (production, self-hosted)</span></li>
+          <li><b>Components</b><span>JSX → JS, pre-compiled with Babel</span></li>
+          <li><b>Runtime compile</b><span>None (no in-browser Babel)</span></li>
+          <li><b>Styling</b><span>CSS design tokens + inline styles</span></li>
+          <li><b>Fonts</b><span>Cinzel + Source Sans 3</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul class="stack">
+          <li><b>Build</b><span>Node + Babel + Terser (static output)</span></li>
+          <li><b>Hosting</b><span>GitHub Pages (static)</span></li>
+          <li><b>Backend</b><span>None, fully static</span></li>
+          <li><b>SEO</b><span>Meta + Open Graph + JSON-LD</span></li>
+          <li><b>Dependencies (runtime)</b><span>React only</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Quality &amp; best practices</h2>
+    <div class="card">
+      <span class="pill">✓ Content-Security-Policy</span>
+      <span class="pill">✓ No third-party CDNs</span>
+      <span class="pill">✓ Lazy-loaded images</span>
+      <span class="pill">✓ Crawlable static fallback</span>
+      <span class="pill">✓ Structured data (JSON-LD)</span>
+      <span class="pill">✓ rel=noopener on external links</span>
+      <span class="pill">✓ Semantic HTML</span>
+      <span class="pill">✓ Reduced-motion support</span>
+      <span class="pill">✓ Minified JS</span>
+      <span class="pill">✓ Responsive (mobile + desktop)</span>
+    </div>
+
+    <h2>Roadmap &amp; integrations</h2>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="cat">Google</div>
+        <ul class="todo">
+          <li><b>Business Profile.</b> Put the villa on Google Maps and Search, and collect Google reviews.</li>
+          <li><b>Analytics (GA4).</b> See how many people visit and where they come from.</li>
+          <li><b>Search Console.</b> Track SEO and make sure Google indexes the site.</li>
+          <li><b>Maps embed.</b> Live directions to the villa on the page.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cat">Airbnb</div>
+        <ul class="todo">
+          <li><b>Live availability.</b> Sync the booking calendar so dates stay current (iCal).</li>
+          <li><b>Real reviews.</b> Pull guest reviews and the rating in automatically.</li>
+          <li><b>Book deep-links.</b> One tap to the listing (already live).</li>
+          <li><b>Pricing widget.</b> Show nightly rates and an availability search.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cat">Content &amp; features</div>
+        <ul class="todo">
+          <li><b>Full photo gallery.</b> 133 source photos available, 6 in use today.</li>
+          <li><b>Drone film.</b> Swap the placeholder for the real footage when ready.</li>
+          <li><b>Inquiry inbox.</b> Wire the booking form to email or a CRM.</li>
+          <li><b>Kai concierge.</b> Connect the chatbot to the real guest guide.</li>
+          <li><b>Custom domain.</b> Point kinghillvilla.com at the site.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Built with Claude</h2>
+    <div class="card claude">
+      <p>This whole site, the design, the code, the photo editing, the SEO, and this dashboard, was built with <b>Claude</b>, Anthropic's AI. The workflow is simple: you describe what you want in plain English, and Claude builds it, tests it, and ships it.</p>
+      <p><b>What Claude can do next for King Hill Villa:</b></p>
+      <ul>
+        <li>Wire up the <b>Google and Airbnb integrations</b> above</li>
+        <li>Build the <b>full 133-photo gallery</b> with categories and lightbox</li>
+        <li>Connect the <b>booking form</b> to a real inbox so inquiries actually arrive</li>
+        <li>Drop in the <b>drone video</b> the moment it exists</li>
+        <li>Train <b>Kai</b> on the real guest guide so its answers are accurate</li>
+        <li>Refresh copy, re-run performance and SEO audits, and fix anything that comes up</li>
+      </ul>
+      <p class="sub">No coding required. Just say what you want changed, and it gets done.</p>
+    </div>
+
+    <h2>Automations &amp; connections</h2>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="cat">Connect the tools you already use</div>
+        <ul class="todo">
+          <li><b>Gmail.</b> Read, draft, and send. Auto-reply to booking inquiries, send pre-arrival info and check-in details, and request a review after each stay.</li>
+          <li><b>Google Calendar.</b> Read bookings, flag open weeks, and schedule cleaner turnovers between guests.</li>
+          <li><b>Slack.</b> Push a ping the moment a new inquiry or review comes in.</li>
+          <li><b>Sheets &amp; Drive.</b> Log every inquiry and booking to a spreadsheet automatically.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="cat">Automated owner's report</div>
+        <p class="sub" style="margin:0 0 12px">The same scheduled "founder's report" we run on our iOS app, pointed at the villa. Claude runs on a schedule (say every Monday) and emails a digest, with zero manual work:</p>
+        <ul class="todo">
+          <li>Arrivals &amp; departures this week</li>
+          <li>New inquiries, with draft replies ready to send</li>
+          <li>New Airbnb / Google reviews + sentiment</li>
+          <li>Open dates worth promoting</li>
+          <li>Occupancy &amp; revenue vs. last month</li>
+          <li>Maintenance and turnover reminders</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card claude" style="margin-top:16px">
+      <p style="margin:0"><b>The pattern:</b> connect the accounts once, then Claude handles the repetitive work on a schedule, the inbox triage, the guest emails, the weekly report, so the owner spends time on guests instead of admin. It is the difference between running the rental and the rental running you.</p>
+    </div>
+
+  </div>
+  <footer>King Hill Villa at Mudjin Harbor · internal build dashboard · not indexed · <a href="/">← back to site</a></footer>
+</body>
+</html>
