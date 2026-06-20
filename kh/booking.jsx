@@ -16,18 +16,19 @@ function BookingInquiry({ askKai }) {
             <img loading="lazy" decoding="async" src="assets/photo_sunset.jpg" alt="Golden hour over the water at King Hill Villa" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, rgba(7,39,63,0.32), rgba(7,39,63,0.82))' }} />
             <div style={{ position: 'relative', padding: 'clamp(26px,4vw,42px)', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 12, letterSpacing: '0.28em', color: 'var(--kh-sandstone-gold)', marginBottom: 16 }}>✦ RESERVE YOUR STAY</div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(28px,3.6vw,42px)', lineHeight: 1.12, letterSpacing: '0.02em', color: 'var(--kh-ivory-white)', margin: 0 }}>Ready to experience King Hill?</h2>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 12, letterSpacing: '0.28em', color: 'var(--kh-sandstone-gold)', marginBottom: 16 }}>✦ BOOK DIRECT &amp; SAVE</div>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'clamp(28px,3.6vw,42px)', lineHeight: 1.12, letterSpacing: '0.02em', color: 'var(--kh-ivory-white)', margin: 0 }}>Book direct with the owner.</h2>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(15px,1.6vw,17px)', lineHeight: 1.65, color: 'rgba(248,244,236,0.88)', margin: '16px 0 0', maxWidth: 420 }}>
-                Send your dates and we'll help you plan the perfect Middle Caicos stay, owner-hosted, start to finish.
+                Booking directly with Ed skips the booking-platform service fees. He confirms your dates personally, so there are no surprises.
               </p>
               <div style={{ display: 'flex', gap: 18, marginTop: 24, flexWrap: 'wrap' }}>
-                {['5.0 Guest Favorite', 'Entire villa', 'Owner-hosted'].map((t) => (
+                {['No platform fees', 'Owner-confirmed dates', 'Entire villa'].map((t) => (
                   <span key={t} style={{ display: 'flex', alignItems: 'center', gap: 7, fontFamily: 'var(--font-body)', fontSize: 12.5, fontWeight: 600, color: 'rgba(248,244,236,0.9)' }}>
                     <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--kh-sandstone-gold)' }} />{t}
                   </span>
                 ))}
               </div>
+              <a href="tel:+14125124300" style={{ display: 'inline-flex', alignItems: 'center', alignSelf: 'flex-start', marginTop: 22, fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 14, letterSpacing: '0.04em', color: 'var(--kh-ocean-900)', background: 'var(--kh-sandstone-gold)', borderRadius: 'var(--radius-sm)', padding: '12px 22px', textDecoration: 'none' }}>Call or text Ed · (412) 512-4300</a>
             </div>
           </div>
         </Reveal>
@@ -42,12 +43,14 @@ function BookingInquiry({ askKai }) {
                 </span>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 26, fontWeight: 600, color: 'var(--kh-ocean-blue)', margin: 0, letterSpacing: '0.02em' }}>Request received</h3>
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 15.5, lineHeight: 1.65, color: 'var(--text-muted)', maxWidth: 360, margin: '12px 0 24px' }}>
-                  Thank you, {form.name || 'friend'}. We'll reply to {form.email || 'your email'} with availability and a plan for your stay. <em>(Demo, no live booking is connected yet.)</em>
+                  Thank you, {form.name || 'friend'}. Ed will confirm availability and your direct rate. For the fastest reply, call or text him at <a href="tel:+14125124300" style={{ color: 'var(--kh-ocean-blue)', fontWeight: 600 }}>(412) 512-4300</a>.
                 </p>
                 <Button variant="secondary" size="md" onClick={() => setSent(false)}>Send another request</Button>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+              <form onSubmit={(e) => { e.preventDefault(); setSent(true); /* TODO(backend): POST to Formspree (needs Ed's email + CSP form-action) so this emails him. Phone is the live channel until then. */ }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 600, color: 'var(--kh-ocean-blue)', margin: '0 0 8px', letterSpacing: '0.02em' }}>Request your dates</h3>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 13.5, lineHeight: 1.6, color: 'var(--text-muted)', margin: '0 0 18px' }}>1. Send your dates &nbsp;·&nbsp; 2. Ed confirms availability against the calendar &nbsp;·&nbsp; 3. Book direct, no platform fees.</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, minWidth: 0 }}>
                   <Input label="Name" placeholder="Your name" value={form.name} onChange={set('name')} style={{ gridColumn: '1 / -1' }} required />
                   <Input label="Email" type="email" placeholder="you@example.com" value={form.email} onChange={set('email')} style={{ gridColumn: '1 / -1' }} hint="We'll send availability and a plan here." required />
@@ -64,11 +67,10 @@ function BookingInquiry({ askKai }) {
                   </div>
                 </div>
                 <Button variant="gold" size="lg" type="submit" fullWidth style={{ marginTop: 20 }}>Request Availability</Button>
-                <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
-                  <Button variant="secondary" size="md" style={{ flex: 1 }} onClick={() => window.open('https://www.airbnb.com/rooms/1194929163053607348', '_blank', 'noopener')}>View Airbnb Listing</Button>
-                  <Button variant="ghost" size="md" style={{ flex: 1 }} iconLeft={<img loading="lazy" decoding="async" src="assets/kai_turtle.png" alt="" style={{ width: 20, height: 20, borderRadius: '50%' }} />} onClick={() => askKai('What should we know before booking King Hill Villa?')}>Ask Kai</Button>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 14 }}>
+                  <Button variant="ghost" size="md" iconLeft={<img loading="lazy" decoding="async" src="assets/kai_turtle.png" alt="" style={{ width: 20, height: 20, borderRadius: '50%' }} />} onClick={() => askKai('What should we know before booking King Hill Villa?')}>Ask Kai a question</Button>
                 </div>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', margin: '14px 0 0' }}>No live availability is connected, inquiries reach the owner directly.</p>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', margin: '14px 0 0' }}>Ed confirms availability and your direct rate. Prefer to book through Airbnb? <a href="https://www.airbnb.com/rooms/1194929163053607348" target="_blank" rel="noopener" style={{ color: 'var(--text-link)' }}>View the listing</a>.</p>
               </form>
             )}
           </div>
