@@ -3,26 +3,43 @@
 Marketing/booking site for **King Hill Villa at Mudjin Harbor**, a beachfront
 rental on Middle Caicos, Turks & Caicos.
 
-## Hosting
+**Live:** https://kinghillvilla.github.io (GitHub Pages, served from `main` root).
 
-- Org GitHub Pages site: this repo (`KingHillVilla/KingHillVilla.github.io`)
-  serves at **https://kinghillvilla.github.io** from the `main` branch root.
-- Add an `index.html` at the repo root and it goes live on push.
-- **Custom domain (later):** the owner has a GoDaddy domain. To wire it, add a
-  `CNAME` file with the domain, set it under repo Settings → Pages → Custom
-  domain, then in GoDaddy DNS point the apex `A` records to GitHub Pages
-  (185.199.108–111.153) and a `www` `CNAME` to `kinghillvilla.github.io`.
+> Working on this site with Claude? Read **`CLAUDE.md`** first. It has the
+> architecture, the build step, the deploy rules, and the copy/accuracy rules.
 
-## Property facts (from the live Airbnb listing)
+## Make a change
 
-- 3 bedrooms · 3 beds · 3 private baths · 6 guests · ★5.0 (13 reviews)
-- Location: Middle Caicos, Caicos Islands, Turks & Caicos
-- Photos live on Airbnb's CDN under
-  `https://a0.muscache.com/im/pictures/hosting/Hosting-1194929163053607348/original/<id>.jpeg`
-  (39 images). Confirm with the owner which to feature, and get the real
-  description, nightly rate, and a booking/inquiry contact before publishing.
+The visible `.js` files are compiled from `.jsx` source, so editing source
+requires a rebuild:
 
-## To build (next session)
+```
+npm install      # first time only
+# edit a file in kh/ (e.g. kh/booking.jsx)
+npm run build    # regenerates kh/*.js
+```
 
-A single static `index.html` (plus `styles.css`/assets) is enough for Pages.
-No build step required. Keep it dependency-free unless a framework is needed.
+Commit both the `.jsx` and the regenerated `.js`, then push to `main`. GitHub
+Pages redeploys within about a minute.
+
+## How it's built
+
+- Static site, no backend. React 18 (UMD, self-hosted in `vendor/`), classic
+  `React.createElement`, no Babel in the browser.
+- UI source: `kh/*.jsx` compiled to `kh/*.js` by `build.mjs`.
+- Design system + tokens: `_ds/`. Page shell, SEO, and styles: `index.html`.
+- **`.nojekyll`** at the root is required. Without it, Pages drops the `_ds/`
+  folder and the site goes blank.
+
+## Property facts
+
+The villa's real, verified facts (and the items still awaiting owner
+confirmation) are tracked in **`docs/CONTENT-TODO.md`**. Don't publish invented
+details, check there first.
+
+## Custom domain (later)
+
+The owner has a GoDaddy domain (`kinghillvilla.com`). To wire it: add a `CNAME`
+file with the domain, set it under repo Settings → Pages → Custom domain, then
+in GoDaddy DNS point the apex `A` records to GitHub Pages (185.199.108.153
+through 185.199.111.153) and a `www` `CNAME` to `kinghillvilla.github.io`.

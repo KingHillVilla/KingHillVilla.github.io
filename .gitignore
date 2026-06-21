@@ -4,7 +4,6 @@ node_modules/
 
 # Internal / cross-project / not part of the public villa site
 .claude/
-CLAUDE.md
 InitialPromptData.md
 BrandGuide.PNG
 docs/agents/
